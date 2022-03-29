@@ -16,5 +16,5 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: fetch all dependencies
-        run: source fetch-robolectric-all-dependencies.sh
+        run: source fetch.sh
 
