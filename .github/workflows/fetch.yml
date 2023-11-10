@@ -6,6 +6,7 @@ on:
   pull_request:
     branches: [ main ]
 
+  merge_group:
   workflow_dispatch:
 
 jobs:
@@ -22,9 +23,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          key: ${{ runner.os }}-maven-${{ matrix.script-name }}
           restore-keys: |
-            ${{ runner.os }}-maven-
+            ${{ runner.os }}-maven-${{ matrix.script-name }}
 
       - name: Fetch dependencies
         run: source ${{ matrix.script-name }}
