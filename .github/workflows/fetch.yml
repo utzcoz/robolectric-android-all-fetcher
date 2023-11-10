@@ -9,7 +9,10 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  fetch-dependencies:
+    strategy:
+      matrix:
+        script-name: [fetch-robolectric-dependencies.sh, fetch-robolectric-preinstrumented-dependencies.sh]
     runs-on: ubuntu-latest
 
     steps:
@@ -24,5 +27,5 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Fetch dependencies
-        run: source fetch.sh
+        run: source ${{ matrix.script-name }}
 
