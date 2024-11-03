@@ -74,23 +74,51 @@ fun calculateFileSha256(artifactFile: File): String {
 }
 
 tasks.register("updateAndroidAllJarsMetadata") {
+    val shellDirectoryInThisRepository = File("$rootDir/../../shell")
+    if (!shellDirectoryInThisRepository.exists()) {
+        println("Failed to find shell directory.")
+        return@register
+    }
+    val mavenCommandPrefix = "mvn -s maven-settings.xml dependency:get -Dartifact="
+    println("The shell directory exists, and we will update it.")
+    val fetchRobolectricDependenciesFile = File(shellDirectoryInThisRepository, "fetch-robolectric-dependencies.sh")
+    if (fetchRobolectricDependenciesFile.exists()) {
+        println("${fetchRobolectricDependenciesFile.path} exits, delete and create new file.")
+        fetchRobolectricDependenciesFile.delete()
+    }
+    fetchRobolectricDependenciesFile.createNewFile()
+
+    val fetchRobolectricPreinstrumentedDependenciesFile =
+        File(shellDirectoryInThisRepository, "fetch-robolectric-preinstrumented-dependencies.sh")
+    if (fetchRobolectricPreinstrumentedDependenciesFile.exists()) {
+        println("${fetchRobolectricDependenciesFile.path} exits, delete and create new file.")
+        fetchRobolectricPreinstrumentedDependenciesFile.delete()
+    }
+    fetchRobolectricPreinstrumentedDependenciesFile.createNewFile()
+
     androidAllJars.forEach { version ->
         val androidAllConfiguration =
             configurations.create("androidAllConfiguration${version.first}")
         val preinstrumentedAndroidAllConfiguration =
             configurations.create("preinstrumentedAndroidAllConfiguration${version.first}")
 
+        val androidAllDependencyName =
+            "org.robolectric:android-all:" +
+                "${version.first}-robolectric-${version.second}"
+        fetchRobolectricDependenciesFile.appendText("$mavenCommandPrefix$androidAllDependencyName\n")
+
+        val preinstrumentedAndroidAllDependencyName =
+            "org.robolectric:android-all-instrumented:" +
+                "${version.first}-robolectric-${version.second}-i$preInstrumentedVersion"
+        fetchRobolectricPreinstrumentedDependenciesFile.appendText("$mavenCommandPrefix$preinstrumentedAndroidAllDependencyName\n")
+
         dependencies {
             println("Configure android-all $version")
             androidAllConfiguration(
-                "org.robolectric:android-all:" +
-                    "${version.first}-robolectric-${version.second}",
+                androidAllDependencyName,
             )
             println("Configure android-all-instrumented $version")
-            preinstrumentedAndroidAllConfiguration(
-                "org.robolectric:android-all-instrumented:" +
-                    "${version.first}-robolectric-${version.second}-i$preInstrumentedVersion",
-            )
+            preinstrumentedAndroidAllConfiguration(preinstrumentedAndroidAllDependencyName)
         }
 
         androidAllConfiguration.resolve().forEach { artifactFile ->
