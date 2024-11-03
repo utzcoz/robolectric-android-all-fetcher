@@ -10,6 +10,7 @@ spotless {
     kotlinGradle {
         target("*.gradle.kts") // default target for kotlinGradle
         ktlint()
+            .setEditorConfigPath("$rootDir/.editorconfig")
     }
 }
 
@@ -73,8 +74,10 @@ fun calculateFileSha256(artifactFile: File): String {
 
 tasks.register("updateAndroidAllJarsMetadata") {
     androidAllJars.forEach { version ->
-        val androidAllConfiguration = configurations.create("androidAllConfiguration${version.first}")
-        val preinstrumentedAndroidAllConfiguration = configurations.create("preinstrumentedAndroidAllConfiguration${version.first}")
+        val androidAllConfiguration =
+            configurations.create("androidAllConfiguration${version.first}")
+        val preinstrumentedAndroidAllConfiguration =
+            configurations.create("preinstrumentedAndroidAllConfiguration${version.first}")
 
         dependencies {
             println("Configure android-all $version")

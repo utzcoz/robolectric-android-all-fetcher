@@ -1,0 +1,47 @@
+# KtLint configuration file
+# More info about .editorconfig files: https://editorconfig.org
+# Complete list of properties: https://github.com/editorconfig/editorconfig/wiki/EditorConfig-Properties
+
+[*.{kt,kts}]
+# possible values: number (e.g. 2), "unset" (makes ktlint ignore indentation completely)
+indent_size = 4
+# true (recommended) / false
+insert_final_newline = true
+# possible values: number (e.g. 120) (package name, imports & comments are ignored), "off"
+# it's automatically set to 100 on `ktlint --android ...` (per Android Kotlin Style Guide)
+max_line_length = 120
+
+# Note that rules in any ruleset other than the standard ruleset will need to be prefixed
+# by the ruleset identifier.
+# noinspection EditorConfigKeyCorrectness
+ktlint_standard_no-wildcard-imports = disabled
+# noinspection EditorConfigKeyCorrectness
+ktlint_standard_import-ordering = disabled
+# noinspection EditorConfigKeyCorrectness
+ktlint_standard_filename = disabled
+# noinspection EditorConfigKeyCorrectness
+ktlint_standard_package-name = disabled
+# noinspection EditorConfigKeyCorrectness
+ktlint_standard_no-wildcard-imports = disabled
+# noinspection EditorConfigKeyCorrectness
+ktlint_standard_property-naming = disabled
+# noinspection EditorConfigKeyCorrectness
+ktlint_standard_function-naming = disabled
+# noinspection EditorConfigKeyCorrectness
+ktlint_standard_no-consecutive-comments = disabled
+# noinspection EditorConfigKeyCorrectness
+ktlint_standard_comment-wrapping = disabled
+# noinspection EditorConfigKeyCorrectness
+ktlint_standard_discouraged-comment-location = disabled
+# noinspection EditorConfigKeyCorrectness
+ktlint_standard_if-else-wrapping = disabled
+# noinspection EditorConfigKeyCorrectness
+ktlint_standard_kdoc-wrapping = disabled
+# noinspection EditorConfigKeyCorrectness
+ktlint_standard_function-signature = disabled
+# noinspection EditorConfigKeyCorrectness
+ktlint_standard_trailing-comma-on-declaration-site = disabled
+ij_kotlin_call_parameters_new_line_after_left_paren = true
+ij_kotlin_call_parameters_right_paren_on_new_line = true
+ij_kotlin_allow_trailing_comma = true
+ij_kotlin_allow_trailing_comma_on_call_site = true
