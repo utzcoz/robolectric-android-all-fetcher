@@ -28,5 +28,8 @@ jobs:
             ${{ runner.os }}-maven-${{ matrix.script-name }}
 
       - name: Fetch dependencies
-        run: source ${{ matrix.script-name }}
+        run: |
+          cd shell
+          source ${{ matrix.script-name }}
+          cd ..
 
