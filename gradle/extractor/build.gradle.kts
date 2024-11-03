@@ -74,7 +74,7 @@ fun calculateFileSha256(artifactFile: File): String {
 tasks.register("retrieveRobolectricVersionForBazel") {
     // See https://github.com/robolectric/robolectric-bazel/blob/master/bazel/robolectric.bzl for the format.
     println("DEFAULT_AVAILABLE_VERSIONS = [")
-    androidAllJars.forEach { version ->
+    androidAllJars.reversed().forEach { version ->
         val preinstrumentedAndroidAllConfiguration =
             configurations.create("preinstrumentedAndroidAllConfiguration${version.first}")
 
