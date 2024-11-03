@@ -87,6 +87,7 @@ tasks.register("updateAndroidAllJarsMetadata") {
         fetchRobolectricDependenciesFile.delete()
     }
     fetchRobolectricDependenciesFile.createNewFile()
+    fetchRobolectricDependenciesFile.setExecutable(true, false)
 
     val fetchRobolectricPreinstrumentedDependenciesFile =
         File(shellDirectoryInThisRepository, "fetch-robolectric-preinstrumented-dependencies.sh")
@@ -95,6 +96,7 @@ tasks.register("updateAndroidAllJarsMetadata") {
         fetchRobolectricPreinstrumentedDependenciesFile.delete()
     }
     fetchRobolectricPreinstrumentedDependenciesFile.createNewFile()
+    fetchRobolectricPreinstrumentedDependenciesFile.setExecutable(true, false)
 
     androidAllJars.forEach { version ->
         val androidAllConfiguration =
@@ -110,7 +112,9 @@ tasks.register("updateAndroidAllJarsMetadata") {
         val preinstrumentedAndroidAllDependencyName =
             "org.robolectric:android-all-instrumented:" +
                 "${version.first}-robolectric-${version.second}-i$preInstrumentedVersion"
-        fetchRobolectricPreinstrumentedDependenciesFile.appendText("$mavenCommandPrefix$preinstrumentedAndroidAllDependencyName\n")
+        fetchRobolectricPreinstrumentedDependenciesFile.appendText(
+            "$mavenCommandPrefix$preinstrumentedAndroidAllDependencyName\n",
+        )
 
         dependencies {
             println("Configure android-all $version")
