@@ -24,14 +24,13 @@ jobs:
 
       - uses: gradle/actions/setup-gradle@v4
 
-      - name: Enter extractor directory
-        run: cd gradle/android-all-jars-metadata-extractor
-
       - name: Check Spotless
-        run: ./gradlew spotlessCheck
+        run: cd gradle/android-all-jars-metadata-extractor && \
+          ./gradlew spotlessCheck && cd../..
 
       - name: Update shell scripts
-        run: ./gradlew updateAndroidAllJarsMetadata
+        run: cd gradle/android-all-jars-metadata-extractor && \
+          ./gradlew updateAndroidAllJarsMetadata && cd ../..
 
       - name: Check new shell script' changes
         run: |
@@ -40,9 +39,7 @@ jobs:
           exit 1
 
       - name: Print metadata for robolectric-bazel
-        run: ./gradlew retrieveRobolectricVersionForBazel
-
-      - name: Exit extractor directory
-        run: cd ../..
+        run: cd gradle/android-all-jars-metadata-extractor && \
+          ./gradlew retrieveRobolectricVersionForBazel && cd ../..
            
 
