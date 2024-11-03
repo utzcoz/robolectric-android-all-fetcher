@@ -71,8 +71,7 @@ fun calculateFileSha256(artifactFile: File): String {
     return hashString
 }
 
-tasks.register<Copy>("updateAndroidAllJarsMetadata") {
-    into("build/dependency-sha256")
+tasks.register("updateAndroidAllJarsMetadata") {
     androidAllJars.forEach { version ->
         val androidAllConfiguration = configurations.create("androidAllConfiguration${version.first}")
         val preinstrumentedAndroidAllConfiguration = configurations.create("preinstrumentedAndroidAllConfiguration${version.first}")
