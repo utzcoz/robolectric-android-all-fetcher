@@ -10,7 +10,6 @@ spotless {
     kotlinGradle {
         target("*.gradle.kts") // default target for kotlinGradle
         ktlint()
-            .setEditorConfigPath("$rootDir/.editorconfig")
     }
 }
 
@@ -101,7 +100,7 @@ tasks.register("retrieveRobolectricVersionForBazel") {
 }
 
 tasks.register("updateAndroidAllJarsMetadata") {
-    val shellDirectoryInThisRepository = File("$rootDir/../../shell")
+    val shellDirectoryInThisRepository = File("$rootDir/../shell")
     if (!shellDirectoryInThisRepository.exists()) {
         println("Failed to find shell directory.")
         return@register
