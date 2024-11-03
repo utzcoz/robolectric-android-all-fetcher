@@ -92,7 +92,7 @@ tasks.register("retrieveRobolectricVersionForBazel") {
             // Print preinstrumented version and sha256
             println("    robolectric_version(")
             println("        version=\"${preinstrumentedAndroidAllDependencyName}\",")
-            println("        sha256=\"$hashString,\"")
+            println("        sha256=\"$hashString\",")
             println("    ),")
         }
     }
