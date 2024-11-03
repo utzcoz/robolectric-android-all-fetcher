@@ -13,12 +13,12 @@ source fetch.sh
 
 It contains Gradle projects to extract android-all jars metadata. There are two supported commands:
 
-### `./gradlew updateAndroidAllJarsMetadata`
+### `./gradlew :extractor:updateAndroidAllJarsMetadata`
 
 Extract all android-all dependencies from the list defined in `build.gradle.kts` and update them
 to scripts in shell.
 
-### `./gradlew retrieveRobolectricVersionForBazel`
+### `./gradlew :extractor:retrieveRobolectricVersionForBazel`
 
 Extract sha256 for all supported android-all-instrumented jars and print the format with these data
 to the console.
