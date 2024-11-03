@@ -27,7 +27,7 @@ jobs:
       - name: Check Spotless
         run: |
           cd gradle/android-all-jars-metadata-extractor && \
-          ./gradlew spotlessCheck && && cd .. && cd ..
+          ./gradlew spotlessCheck && cd .. && cd ..
 
       - name: Update shell scripts
         run: |
@@ -43,6 +43,6 @@ jobs:
       - name: Print metadata for robolectric-bazel
         run: |
           cd gradle/android-all-jars-metadata-extractor && \
-          ./gradlew retrieveRobolectricVersionForBazel && && cd .. && cd ..
+          ./gradlew retrieveRobolectricVersionForBazel && cd .. && cd ..
            
 
