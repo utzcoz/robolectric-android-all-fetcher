@@ -39,6 +39,7 @@ private val androidAllJars =
         Pair("5.1.1_r9", "r2"),
         Pair("6.0.1_r3", "r1"),
         Pair("7.0.0_r1", "r1"),
+        Pair("7.1.0_r7", "r1"),
         Pair("8.0.0_r4", "r1"),
         Pair("8.1.0", "4611349"),
         Pair("9", "4913185-2"),
