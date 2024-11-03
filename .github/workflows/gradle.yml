@@ -34,7 +34,7 @@ jobs:
           cd gradle/android-all-jars-metadata-extractor && \
           ./gradlew updateAndroidAllJarsMetadata && cd .. && cd ..
 
-      - name: Check new shell script' changes
+      - name: Check new shell script changes
         run: |
           git status -s && [ $? -ne 0 ] && \
           echo "Uncommitted changes detected. Exiting the pipeline." && \
