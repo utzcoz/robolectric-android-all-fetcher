@@ -14,11 +14,13 @@ plugins {
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
+    google()
 }
 
 dependencies {
     // This dependency is used by the application.
     implementation(libs.guava)
+    implementation(libs.robolectric)
 }
 
 testing {

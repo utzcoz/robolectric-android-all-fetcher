@@ -3,6 +3,8 @@
 
 [versions]
 guava = "33.2.1-jre"
+robolectric = "4.14-beta-1"
 
 [libraries]
 guava = { module = "com.google.guava:guava", version.ref = "guava" }
+robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
