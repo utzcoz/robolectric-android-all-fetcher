@@ -69,8 +69,35 @@ fun calculateFileSha256(artifactFile: File): String {
     }
     val hashBytes = digest.digest()
     val hashString = hashBytes.joinToString("") { String.format("%02x", it.toInt() and 0xFF) }
-    println("SHA-256 of ${artifactFile.name}: $hashString")
     return hashString
+}
+
+tasks.register("retrieveRobolectricVersionForBazel") {
+    // See https://github.com/robolectric/robolectric-bazel/blob/master/bazel/robolectric.bzl for the format.
+    println("DEFAULT_AVAILABLE_VERSIONS = [")
+    androidAllJars.forEach { version ->
+        val preinstrumentedAndroidAllConfiguration =
+            configurations.create("preinstrumentedAndroidAllConfiguration${version.first}")
+
+        val preinstrumentedAndroidAllDependencyName =
+            "${version.first}-robolectric-${version.second}-i$preInstrumentedVersion"
+
+        dependencies {
+            preinstrumentedAndroidAllConfiguration(
+                "org.robolectric:android-all-instrumented:$preinstrumentedAndroidAllDependencyName",
+            )
+        }
+
+        preinstrumentedAndroidAllConfiguration.resolve().forEach { artifactFile ->
+            val hashString = calculateFileSha256(artifactFile)
+            // Print preinstrumented version and sha256
+            println("    robolectric_version(")
+            println("        version=\"${preinstrumentedAndroidAllDependencyName}\",")
+            println("        sha256=\"$hashString,\"")
+            println("    ),")
+        }
+    }
+    println("]")
 }
 
 tasks.register("updateAndroidAllJarsMetadata") {
@@ -118,19 +145,19 @@ tasks.register("updateAndroidAllJarsMetadata") {
 
         dependencies {
             println("Configure android-all $version")
-            androidAllConfiguration(
-                androidAllDependencyName,
-            )
+            androidAllConfiguration(androidAllDependencyName)
             println("Configure android-all-instrumented $version")
             preinstrumentedAndroidAllConfiguration(preinstrumentedAndroidAllDependencyName)
         }
 
         androidAllConfiguration.resolve().forEach { artifactFile ->
-            calculateFileSha256(artifactFile)
+            val hashString = calculateFileSha256(artifactFile)
+            println("SHA-256 of ${artifactFile.name}: $hashString")
         }
 
         preinstrumentedAndroidAllConfiguration.resolve().forEach { artifactFile ->
-            calculateFileSha256(artifactFile)
+            val hashString = calculateFileSha256(artifactFile)
+            println("SHA-256 of ${artifactFile.name}: $hashString")
         }
     }
 }
