@@ -8,7 +8,7 @@
 
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
-    application
+    `java-library`
 }
 
 repositories {
@@ -38,9 +38,4 @@ java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(17)
     }
-}
-
-application {
-    // Define the main class for the application.
-    mainClass = "org.example.App"
 }
