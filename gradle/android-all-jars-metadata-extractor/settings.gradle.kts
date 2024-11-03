@@ -12,4 +12,4 @@ plugins {
 }
 
 rootProject.name = "android-all-jars-metadata-extractor"
-include("app")
+include("extractor")
