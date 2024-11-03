@@ -18,19 +18,7 @@ repositories {
 }
 
 dependencies {
-    // This dependency is used by the application.
-    implementation(libs.guava)
     implementation(libs.robolectric)
-}
-
-testing {
-    suites {
-        // Configure the built-in test suite
-        val test by getting(JvmTestSuite::class) {
-            // Use JUnit Jupiter test framework
-            useJUnitJupiter("5.10.3")
-        }
-    }
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
