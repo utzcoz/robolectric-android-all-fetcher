@@ -30,12 +30,10 @@ java {
 // Copy from Robolectric's AndroidSdk.kt.
 // When there are some changes for one Robolectric's version, these changes should
 // be synced here.
-// This version is from 4.15
+// This version is from 4.16
 private val preInstrumentedVersion = 7
 private val androidAllJars =
     listOf(
-        Pair("5.0.2_r3", "r0"),
-        Pair("5.1.1_r9", "r2"),
         Pair("6.0.1_r3", "r1"),
         Pair("7.0.0_r1", "r1"),
         Pair("7.1.0_r7", "r1"),
@@ -48,7 +46,8 @@ private val androidAllJars =
         Pair("12.1", "8229987"),
         Pair("13", "9030017"),
         Pair("14", "10818077"),
-        Pair("15", "12650502"),
+        Pair("15", "13954326"),
+        Pair("16", "13921718"),
     )
 
 /**
