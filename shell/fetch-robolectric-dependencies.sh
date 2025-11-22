@@ -1,5 +1,3 @@
-mvn -s maven-settings.xml dependency:get -Dartifact=org.robolectric:android-all:5.0.2_r3-robolectric-r0
-mvn -s maven-settings.xml dependency:get -Dartifact=org.robolectric:android-all:5.1.1_r9-robolectric-r2
 mvn -s maven-settings.xml dependency:get -Dartifact=org.robolectric:android-all:6.0.1_r3-robolectric-r1
 mvn -s maven-settings.xml dependency:get -Dartifact=org.robolectric:android-all:7.0.0_r1-robolectric-r1
 mvn -s maven-settings.xml dependency:get -Dartifact=org.robolectric:android-all:7.1.0_r7-robolectric-r1
@@ -12,4 +10,5 @@ mvn -s maven-settings.xml dependency:get -Dartifact=org.robolectric:android-all:
 mvn -s maven-settings.xml dependency:get -Dartifact=org.robolectric:android-all:12.1-robolectric-8229987
 mvn -s maven-settings.xml dependency:get -Dartifact=org.robolectric:android-all:13-robolectric-9030017
 mvn -s maven-settings.xml dependency:get -Dartifact=org.robolectric:android-all:14-robolectric-10818077
-mvn -s maven-settings.xml dependency:get -Dartifact=org.robolectric:android-all:15-robolectric-12650502
+mvn -s maven-settings.xml dependency:get -Dartifact=org.robolectric:android-all:15-robolectric-13954326
+mvn -s maven-settings.xml dependency:get -Dartifact=org.robolectric:android-all:16-robolectric-13921718
